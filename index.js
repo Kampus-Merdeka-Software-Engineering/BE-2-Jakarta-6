@@ -20,6 +20,9 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use("/packages", packagesRoute);
+app.get("/test", (request, response) => {
+    res.json({name: "group6"})
+})
 
 app.use((err, req, res, next) => {
     if (res.headersSent) {
