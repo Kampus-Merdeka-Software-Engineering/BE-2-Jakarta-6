@@ -16,28 +16,31 @@
 //         massage: "Data Succesfully Retrieved",
 //     });
 // };
-import express from "express";
+import express, { request, response } from "express";
 // import { islands } from "../constants/islands.js";
-import { createPackage, readPackages } from "../services/Packages.js";
+import { createPackage, readPackages, getPackages } from "../services/Packages.js";
 
 export const getPackagesByDetails = async (request, response) => {
-    const packagesList = await readPackages();
+    
+    const id = request.params.id;
+    // response.send(id);
+    const packagesList = await readPackages(id);
 
-    console.log({packagesList});
+//     console.log({packagesList});
 
-// using public folder
-    // response.status(200).json({
-    //     data: packagesList.map((data) => ({
-    //         ...data.dataValues,
-    //         island_images1: `http://localhost:3000${data.dataValues.island_images1}`,
-    //         island_images2: `http://localhost:3000${data.dataValues.island_images2}`,
-    //         island_images3: `http://localhost:3000${data.dataValues.island_images3}`,
-    //         island_images4: `http://localhost:3000${data.dataValues.island_images4}`,
-    //         island_images5: `http://localhost:3000${data.dataValues.island_images5}`,
-    //       })),
+// // using public folder
+//     // response.status(200).json({
+//     //     data: packagesList.map((data) => ({
+//     //         ...data.dataValues,
+//     //         island_images1: `http://localhost:3000${data.dataValues.island_images1}`,
+//     //         island_images2: `http://localhost:3000${data.dataValues.island_images2}`,
+//     //         island_images3: `http://localhost:3000${data.dataValues.island_images3}`,
+//     //         island_images4: `http://localhost:3000${data.dataValues.island_images4}`,
+//     //         island_images5: `http://localhost:3000${data.dataValues.island_images5}`,
+//     //       })),
     
     response.status(200).json({
-            data: packagesList,
+        data: packagesList,
         massage: "Succesfully to get data!"
     });
 };
@@ -75,3 +78,9 @@ export const postPackageItem = async (request, response) => {
 
     response.json(packages);
 };
+
+export const getAllPackages = async(request, response) => {
+    response.json({
+        data: await getPackages()
+    });
+}
