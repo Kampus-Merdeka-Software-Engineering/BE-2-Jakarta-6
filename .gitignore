@@ -1,3 +1,4 @@
 node_modules
 constants
 public
+.env
