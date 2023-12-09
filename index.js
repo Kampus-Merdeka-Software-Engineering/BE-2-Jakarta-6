@@ -1,4 +1,4 @@
-require('dotenv').config()
+import 'dotenv/config'
 console.log(process.env)
 
 import express from 'express';
