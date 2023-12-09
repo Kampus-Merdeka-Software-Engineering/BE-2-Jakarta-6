@@ -1,7 +1,6 @@
 import express from 'express';
 import { 
-    getPackagesByDetails,
-    // getPackagesById, 
+    getPackagesByDetails, 
     getAllPackages,
     postPackageItem 
 } from '../controllers/packages-controller.js';
